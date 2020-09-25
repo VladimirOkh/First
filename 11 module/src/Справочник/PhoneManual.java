@@ -4,40 +4,34 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class PhoneManual {
-    public static String[] names = new String[5];
-    public static long[] phones = new long[5];
-    public static long phone;
+    public static String[][] Manual = new String[5][1];
+    public static String phone;
 
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        boolean isCorrectName = false;
-        while (!isCorrectName) {
-            System.out.println("Введите ФИО");
-            String name = scanner.nextLine();
-            isCorrectName = checkName(name);
-            if (!isCorrectName) System.out.println("Введите корректное имя!");
-            else {
-                addName(names, name);
-            }
-        }
-    }
-
-    private static String[] addName(String[] names, String name) {
-        if (names[names.length - 1] != null) {                       //если массив заполнен то создается новый массив большего размера
-            PhoneManual.names = new String[names.length];            //а данные из прошлого массива переносятся в новый
-            PhoneManual.names = names.clone();
-            PhoneManual.names[names.length] = name;
-            return PhoneManual.names;
-        } else {
-            for (int i = 0; i < names.length; i++) {
-                if ((names[i] == null)){
-                    names[i] = name;
+        int n = scanner.nextInt();
+        for (int i = 1; i < n; i++) {
+            boolean isCorrectName = false;
+            while (!isCorrectName) {
+                System.out.println("Введите ФИО " + i);
+                String name = scanner.nextLine();
+                isCorrectName = checkName(name);
+                if (!isCorrectName)
+                    System.out.println("Введите корректное имя!");
+                else {
+                    addPerson(Manual,name,phone);
                 }
             }
         }
-        return names;
     }
+    public static String[][] addPerson(String Manual[][],String name,String phone){
+
+        return String[][];
+    }
+
+
+
 
 
     private static boolean checkName(String name) {
