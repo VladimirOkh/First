@@ -1,4 +1,11 @@
-public class Test extends Task implements Autochecked{
+public class Test extends Task implements Autochecked {
+    String[] answers;
+
+    public Test(int number, String taskText) {
+        super(number = 0, taskText = "Почини принтер");
+        answers = new String[]{"a", "b", "c"};
+    }
+
     @Override
     void doTask() {
 
@@ -6,12 +13,12 @@ public class Test extends Task implements Autochecked{
     }
 
     @Override
-    public boolean checkAutomatically() {
-        return false;
+    public void checkAutomatically() {
+        System.out.println("Задание выполнено");
     }
 
     @Override
     public String toString() {
-        return "Test{}";
+        return "Test";
     }
 }

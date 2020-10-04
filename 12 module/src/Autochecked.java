@@ -1,4 +1,6 @@
 public interface Autochecked {
-    boolean checkAutomatically();
+   default void checkAutomatically(){
+       System.out.println("Задание выполнено");
+   }
 
 }
