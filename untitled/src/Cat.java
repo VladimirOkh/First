@@ -1,12 +1,12 @@
 public class Cat {
-    public void pet() {
-        System.out.println("Cat purrs");
+    public void feed() {
+        System.out.println("Cat sleeps");
     }
 }
 
 class Main {
     public static void main(String[] args) {
         Cat bella = new Cat();
-        bella.pet();
+        bella.feed();
     }
 }
