@@ -4,42 +4,26 @@ public class BankAccount {
     String customerID;
     String customerName;
 
-    public void deposit(int amount){
-        if (amount!=0){
-            balance +=amount;
+    public void deposit(int amount) {
+        if (amount != 0) {
+            balance += amount;
             previousTransaction = amount;
         }
     }
-
-    public int getBalance() {
-        return balance;
+    public void withdraw(int amount){
+        if (amount != 0){
+            balance -=amount;
+            previousTransaction = -amount;
+        }
     }
-
-    public void setBalance(int balance) {
-        this.balance = balance;
+    public void getPreviousTransaction(){
+        if (previousTransaction > 0){
+            System.out.println("Зачислено: " + previousTransaction);
+        }else if (previousTransaction < 0){
+            System.out.println("Снято: "+ Math.abs(previousTransaction));
+        }else System.out.println("Предыдущие транзакции отсутствуют");
     }
+    public void showMenu(){
 
-    public int getPreviousTransaction() {
-        return previousTransaction;
-    }
-
-    public void setPreviousTransaction(int previousTransaction) {
-        this.previousTransaction = previousTransaction;
-    }
-
-    public String getCustomerID() {
-        return customerID;
-    }
-
-    public void setCustomerID(String customerID) {
-        this.customerID = customerID;
-    }
-
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
     }
 }
