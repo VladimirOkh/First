@@ -1,24 +1,24 @@
 import java.util.Scanner;
 
 public class BankAccount {
-    int balance;
-    int previousTransaction;
+    double balance;
+    double previousTransaction;
+    String customerPassword;
     String customerID;
-    String customerName;
 
-    BankAccount(String cName, String cID) {
-        customerID = cID;
-        customerName = cName;
+    BankAccount(String cID, String cPass) {
+        this.customerPassword = cPass;
+        this.customerID = cID;
     }
 
-    public void deposit(int amount) {
+    public void deposit(double amount) {
         if (amount != 0) {
             balance += amount;
             previousTransaction = amount;
         }
     }
 
-    public void withdraw(int amount) {
+    public void withdraw(double amount) {
         if (amount != 0) {
             balance -= amount;
             previousTransaction = -amount;
@@ -37,8 +37,7 @@ public class BankAccount {
         char option = '\0';
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Здравствуйте " + customerName);
-        System.out.println("Ваш ID " + customerID);
+        System.out.println("Здравствуйте!");
         System.out.println("\n");
         System.out.println("A. Проверить баланс");
         System.out.println("B. Положить деньги");
@@ -85,7 +84,7 @@ public class BankAccount {
                         System.out.println("---------------------");
                         int amount2 = sc.nextInt();
                         if (amount2 > balance) {
-                            System.out.println("Недостаточно средств на балансе! Вы не можете снять больше чем: " + balance + ". Пожалуйста пополните кошелек.");
+                            System.out.println("Недостаточно средств на балансе! Вы не можете снять больше чем: " + balance);
                             break;
                         }
                         withdraw(amount2);
@@ -97,7 +96,7 @@ public class BankAccount {
                         System.out.println("E. Выйти");
                         break;
                     } else {
-                        System.out.println("Недостаточно средств на балансе! Пожалуйста пополните кошелек.");
+                        System.out.println("Недостаточно средств на балансе!");
                         break;
                     }
                 case 'D':
