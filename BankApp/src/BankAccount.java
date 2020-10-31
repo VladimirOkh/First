@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Scanner;
 
 public class BankAccount {
@@ -65,29 +66,12 @@ public class BankAccount {
                     System.out.println("E. Выйти");
                     break;
                 case 'B':
-                    System.out.println("---------------------");
-                    System.out.println("Введите сумму для зачисления");
-                    System.out.println("---------------------");
-                    int amount = sc.nextInt();
-                    deposit(amount);
-                    System.out.println("\n");
-                    System.out.println("A. Проверить баланс");
-                    System.out.println("B. Положить деньги");
-                    System.out.println("C. Снять деньги");
-                    System.out.println("D. Узнать предыдущую транзакцию");
-                    System.out.println("E. Выйти");
-                    break;
-                case 'C':
-                    if (balance > 0) {
+                    try {
                         System.out.println("---------------------");
-                        System.out.println("Введите сумму для снятия");
+                        System.out.println("Введите сумму для зачисления");
                         System.out.println("---------------------");
-                        int amount2 = sc.nextInt();
-                        if (amount2 > balance) {
-                            System.out.println("Недостаточно средств на балансе! Вы не можете снять больше чем: " + balance);
-                            break;
-                        }
-                        withdraw(amount2);
+                        int amount = sc.nextInt();
+                        deposit(amount);
                         System.out.println("\n");
                         System.out.println("A. Проверить баланс");
                         System.out.println("B. Положить деньги");
@@ -95,6 +79,33 @@ public class BankAccount {
                         System.out.println("D. Узнать предыдущую транзакцию");
                         System.out.println("E. Выйти");
                         break;
+                    } catch (Exception e) {
+                        System.out.println("Попробуйте еще раз");
+                        menu();
+                    }
+                case 'C':
+                    if (balance > 0) {
+                        System.out.println("---------------------");
+                        System.out.println("Введите сумму для снятия");
+                        System.out.println("---------------------");
+                        try {
+                            int amount2 = sc.nextInt();
+                            if (amount2 > balance) {
+                                System.out.println("Недостаточно средств на балансе! Вы не можете снять больше чем: " + balance);
+                                break;
+                            }
+                            withdraw(amount2);
+                            System.out.println("\n");
+                            System.out.println("A. Проверить баланс");
+                            System.out.println("B. Положить деньги");
+                            System.out.println("C. Снять деньги");
+                            System.out.println("D. Узнать предыдущую транзакцию");
+                            System.out.println("E. Выйти");
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("Попробуйте еще раз");
+                            menu();
+                        }
                     } else {
                         System.out.println("Недостаточно средств на балансе!");
                         break;
@@ -119,5 +130,19 @@ public class BankAccount {
             }
         } while (option != 'E');
         System.out.println("Всего доброго!");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BankAccount)) return false;
+        BankAccount account = (BankAccount) o;
+        return Objects.equals(customerPassword, account.customerPassword) &&
+                Objects.equals(customerID, account.customerID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(customerPassword, customerID);
     }
 }
